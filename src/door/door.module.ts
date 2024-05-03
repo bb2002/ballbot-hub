@@ -4,6 +4,7 @@ import { DoorService } from './door.service';
 
 @Module({
   controllers: [DoorController],
-  providers: [DoorService]
+  providers: [DoorService],
+  exports: [DoorService],
 })
 export class DoorModule {}

@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DoorModule } from './door/door.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DoorModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), DoorModule],
   controllers: [AppController],
   providers: [AppService],
 })

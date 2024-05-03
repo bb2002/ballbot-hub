@@ -1,11 +1,11 @@
 import { Controller, Get, Render } from '@nestjs/common';
-import { AppService } from './app.service';
 import { ConfigService } from '@nestjs/config';
+import { DoorService } from './door/door.service';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
+    private readonly doorService: DoorService,
     private readonly configService: ConfigService,
   ) {}
 
@@ -17,6 +17,10 @@ export class AppController {
         (this.configService.get('AUTHORIZATION_TOKEN') as string) ?? ''
       ).substring(0, 3) + '***';
 
-    return { uptime: process.uptime(), secretKey };
+    return {
+      uptime: process.uptime(),
+      secretKey,
+      door: this.doorService.canUseGPIO(),
+    };
   }
 }
