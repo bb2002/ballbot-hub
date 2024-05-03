@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     }
 
     const realToken = this.configService.get('AUTHORIZATION_TOKEN') as string;
-    if (realToken) {
+    if (!realToken) {
       return false;
     }
 
