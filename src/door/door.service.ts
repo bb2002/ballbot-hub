@@ -7,7 +7,7 @@ export class DoorService {
   private readonly logger = new Logger(DoorService.name);
   private GPIOSetupResult = false;
 
-  private readonly PIN_DOOR_RELAY = 5;
+  private readonly PIN_DOOR_RELAY = 8;
 
   constructor() {
     Promise.all([GPIO.setup(this.PIN_DOOR_RELAY, GPIO.DIR_OUT)])
@@ -31,7 +31,7 @@ export class DoorService {
     }
 
     return GPIO.write(this.PIN_DOOR_RELAY, true)
-      .then(() => sleep(1000))
+      .then(() => sleep(500))
       .then(() => GPIO.write(this.PIN_DOOR_RELAY, false))
       .then(() => true)
       .catch((ex) => {
